@@ -1,3 +1,24 @@
-console.log("Prakriti")
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const UserSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    password:{
+        type:String,
+        required:true
+    },
+    address:{
+        type:String,
+        required:true
+    }
 
-console.log("Hello this is fresh branch")
+})
+const UserModel = mongoose.model('user',UserSchema);
+module.exports = UserModel;
