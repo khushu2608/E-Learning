@@ -1,6 +1,7 @@
 import { useState } from "react";
-
+import{useNavigate} from "react-router-dom";
 function Signup() {
+    const navigate = useNavigate();
     const[formData, setFormData]=useState({
         name:"",
         email:"",
@@ -26,7 +27,8 @@ function Signup() {
           );
           const data = await response.json();
           if(response.ok){
-            alert("Sign-Up Successfull")
+            alert("Sign-Up Successfull");
+            navigate("/login")
           }
           else{
             alert(data.message);
