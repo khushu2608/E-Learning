@@ -1,5 +1,6 @@
 import { useState } from "react";
 import{useNavigate} from "react-router-dom";
+import { handleError, handleSuccess } from "../utils";
 function Signup() {
     const navigate = useNavigate();
     const[formData, setFormData]=useState({
@@ -27,15 +28,15 @@ function Signup() {
           );
           const data = await response.json();
           if(response.ok){
-            alert("Sign-Up Successfull");
+            handleSuccess("Sign-Up Successfull");
             navigate("/login")
           }
           else{
-            alert(data.message);
+            handleError(data.message);
           }
         }
         catch(error){
-          console.log(error);
+          handleError(error);
           
         }
 

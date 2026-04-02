@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { handleError, handleSuccess } from "../utils";
 
 function Login() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function Login() {
       const { success, message, token, name, role, error } = result;
 
       if (success) {
-        alert("Login Successful");
+        handleSuccess("Login Successful");
 
         localStorage.setItem("token", token);
         localStorage.setItem("name", name);
@@ -46,9 +47,9 @@ function Login() {
         }
       } else if (error) {
         const details = error?.details[0].message;
-        alert(details);
+        handleError(details);
       } else {
-        alert(message || "Something went wrong!");
+        handleError(message || "Something went wrong!");
       }
     } catch (err) {
       alert("Server error");
