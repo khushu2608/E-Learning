@@ -5,6 +5,7 @@ function Signup() {
         name:"",
         email:"",
         password:"",
+        role:""
     })
     const handleChange = (e) =>{
         setFormData({
@@ -12,9 +13,30 @@ function Signup() {
             [e.target.name]: e.target.value,
         });
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(formData);
+        try{
+          const response = await fetch("http://localhost:8080/api/auth/signup",{
+            method:"POST",
+            headers:{
+              "Content-Type":"application/json"
+            },
+            body:JSON.stringify(formData)
+          }
+          );
+          const data = await response.json();
+          if(response.ok){
+            alert("Sign-Up Successfull")
+          }
+          else{
+            alert(data.message);
+          }
+        }
+        catch(error){
+          console.log(error);
+          
+        }
+
     };
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
@@ -48,9 +70,31 @@ function Signup() {
           onChange={handleChange}
           className="w-full mb-3 p-4 border rounded"
         />
+        <div className="flex gap-4 mb-4">
+  
+        <button
+          type="button"
+          onClick={() => setFormData({ ...formData, role: "student" })}
+          className={`flex-1 p-2 border rounded 
+            ${formData.role === "student" ? "bg-blue-500 text-white" : "bg-white"}`}
+        >
+          Student
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setFormData({ ...formData, role: "instructor" })}
+          className={`flex-1 p-2 border rounded 
+            ${formData.role === "instructor" ? "bg-blue-500 text-white" : "bg-white"}`}
+        >
+          Instructor
+        </button>
+
+      </div>
 
         <button 
         type="submit"
+        onClick={handleSubmit}
         className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
           Signup
         </button>
