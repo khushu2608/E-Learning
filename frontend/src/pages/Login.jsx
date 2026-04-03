@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../utils";
+import PublicNavbar from "../Components/navbar/PublicNavbar";
 
 function Login() {
   const navigate = useNavigate();
@@ -58,6 +59,8 @@ function Login() {
   };
 
   return (
+    <div>
+    <PublicNavbar/>
     <div className="flex items-center justify-center h-screen bg-gray-100">
       
       <form
@@ -109,6 +112,7 @@ function Login() {
           </span>
         </p>
       </form>
+    </div>
     </div>
   );
 }
