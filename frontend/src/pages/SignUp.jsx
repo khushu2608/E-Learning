@@ -1,6 +1,7 @@
 import { useState } from "react";
 import{useNavigate} from "react-router-dom";
 import { handleError, handleSuccess } from "../utils";
+import PublicNavbar from "../Components/navbar/PublicNavbar";
 function Signup() {
     const navigate = useNavigate();
     const[formData, setFormData]=useState({
@@ -42,6 +43,8 @@ function Signup() {
 
     };
   return (
+    <div>
+    <PublicNavbar/>
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <form onSubmit={handleSubmit}
       className="bg-white p-8 rounded-lg shadow-md w-80">
@@ -102,6 +105,7 @@ function Signup() {
           Signup
         </button>
       </form>
+    </div>
     </div>
   );
 }

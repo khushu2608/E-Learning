@@ -6,18 +6,20 @@ import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoutes from "./Components/ProtectedRoutes"
 import StudentPage from "./pages/StudentPage";
 import InstructorPage from "./pages/InstructorPage";
+
 function App() {
   return (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<SignUp/>}></Route>
-      <Route path="/login" element={<Login/>}></Route>
-      <Route path="/student" element={
-        <ProtectedRoutes allowedRole="student">
-          <StudentPage/>
-        </ProtectedRoutes>
-      }></Route>
-      <Route path="/instructor" element={
+    <div>
+      <BrowserRouter>
+        <Routes>
+         <Route path="/" element={<SignUp/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
+          <Route path="/student" element={
+              <ProtectedRoutes allowedRole="student">
+                <StudentPage/>
+              </ProtectedRoutes>
+          }></Route>
+          <Route path="/instructor" element={
         <ProtectedRoutes allowedRole="instructor">
           <InstructorPage/>
         </ProtectedRoutes>
@@ -26,7 +28,7 @@ function App() {
     <ToastContainer />
     
   </BrowserRouter>
-  
+  </div>
   )
 }
 
