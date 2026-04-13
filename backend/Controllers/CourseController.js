@@ -184,4 +184,29 @@ const getInstructorCourse = async (req, res) => {
     });
   }
 };
-module.exports = {addCourse,getInstructorCourse,updateCourse,deleteCourse,displayCourse}
+const getCourseById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const course = await CourseModel.findById(id);
+
+    if (!course) {
+      return res.status(404).json({
+        success: false,
+        message: "Course not found"
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      course
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
+module.exports = {addCourse,getInstructorCourse,updateCourse,deleteCourse,displayCourse,getCourseById}

@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoutes from "./Components/ProtectedRoutes"
 import StudentPage from "./pages/StudentPage";
 import InstructorPage from "./pages/InstructorPage";
+import AddCourse from "./pages/AddCourse";
+import EditCourse from "./pages/EditCourse"
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <InstructorPage/>
         </ProtectedRoutes>
       }></Route>
+        <Route path="/addCourse" element={<AddCourse/>}></Route>
+        <Route path="/editCourse/:id" element={<EditCourse/>}></Route>
     </Routes>
     <ToastContainer />
     
