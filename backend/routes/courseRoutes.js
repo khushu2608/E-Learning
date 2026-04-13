@@ -3,7 +3,8 @@ const {
   getInstructorCourse,
   updateCourse,
   deleteCourse,
-  displayCourse
+  displayCourse,
+  getCourseById
 } = require("../Controllers/CourseController");
 
 const isInstructor = require("../middlewares/isInstructor");
@@ -46,6 +47,12 @@ router.delete(
   authMiddleware,
   isInstructor,
   deleteCourse
+);
+router.get(
+  "/:id",
+  authMiddleware,
+  isInstructor,
+  getCourseById
 );
 
 module.exports = router;
